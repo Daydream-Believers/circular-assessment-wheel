@@ -217,6 +217,46 @@ const CircularAssessmentWheel = () => {
     return `${cleanStudent}_${cleanProject}_Assessment.${extension}`;
   };
 
+  // Helper functions for input replacement during export
+  const replaceInputsForExport = () => {
+    document.querySelectorAll('input, select').forEach((el) => {
+      const wrapper = document.createElement('div');
+      wrapper.textContent = el.value || el.placeholder || '';
+      
+      // Copy computed styles
+      const computedStyle = window.getComputedStyle(el);
+      wrapper.style.fontSize = computedStyle.fontSize;
+      wrapper.style.padding = computedStyle.padding;
+      wrapper.style.border = 'none'; // Remove borders for clean text
+      wrapper.style.borderRadius = computedStyle.borderRadius;
+      wrapper.style.width = `${el.offsetWidth}px`;
+      wrapper.style.height = `${el.offsetHeight}px`;
+      wrapper.style.display = 'flex';
+      wrapper.style.alignItems = 'center';
+      wrapper.style.color = '#171729';
+      wrapper.style.backgroundColor = 'transparent'; // No background
+      wrapper.style.boxSizing = 'border-box';
+      wrapper.style.fontFamily = 'Arial, sans-serif';
+      wrapper.style.fontWeight = 'normal';
+      
+      // Insert replacement and hide original
+      el.parentNode.insertBefore(wrapper, el);
+      el.style.display = 'none';
+      el.setAttribute('data-hidden-temp', 'true');
+    });
+  };
+
+  const restoreInputsAfterExport = () => {
+    document.querySelectorAll('[data-hidden-temp]').forEach((el) => {
+      el.style.display = '';
+      el.removeAttribute('data-hidden-temp');
+      // Remove the temporary wrapper
+      if (el.previousSibling && el.previousSibling.tagName === 'DIV') {
+        el.previousSibling.remove();
+      }
+    });
+  };
+
   // Save wheel only (1000x1000px)
   const saveWheelOnly = async () => {
     if (!isFullyAssessed()) return;
@@ -250,17 +290,20 @@ const CircularAssessmentWheel = () => {
       studentNameEl.style.fontWeight = 'bold';
       studentNameEl.style.marginBottom = '10px';
       studentNameEl.style.color = '#171729';
+      studentNameEl.style.fontFamily = 'Arial, sans-serif';
       
       const projectNameEl = document.createElement('div');
       projectNameEl.textContent = projectName || 'Project Name';
       projectNameEl.style.fontSize = '20px';
       projectNameEl.style.color = '#171729';
       projectNameEl.style.marginBottom = '10px';
+      projectNameEl.style.fontFamily = 'Arial, sans-serif';
       
       const levelEl = document.createElement('div');
       levelEl.textContent = qualificationLevel;
       levelEl.style.fontSize = '14px';
       levelEl.style.color = '#666';
+      levelEl.style.fontFamily = 'Arial, sans-serif';
       
       nameContainer.appendChild(studentNameEl);
       nameContainer.appendChild(projectNameEl);
@@ -280,6 +323,7 @@ const CircularAssessmentWheel = () => {
       dateField.style.color = '#171729';
       dateField.style.marginTop = '20px';
       dateField.style.textAlign = 'center';
+      dateField.style.fontFamily = 'Arial, sans-serif';
       
       tempContainer.appendChild(nameContainer);
       tempContainer.appendChild(clonedSvg);
@@ -297,7 +341,9 @@ const CircularAssessmentWheel = () => {
         scale: 2, // Higher quality
         logging: false,
         useCORS: true,
-        allowTaint: true
+        allowTaint: true,
+        // Force consistent font rendering
+        foreignObjectRendering: false
       });
       
       // Download as PNG
@@ -324,13 +370,25 @@ const CircularAssessmentWheel = () => {
     setIsGeneratingPDF(true);
     
     try {
+      // Replace inputs with styled divs for better rendering
+      replaceInputsForExport();
+      
       // Hide buttons temporarily
       const buttons = document.querySelectorAll('button');
       const originalDisplays = Array.from(buttons).map(btn => btn.style.display);
       buttons.forEach(btn => btn.style.display = 'none');
       
+      // Apply consistent font family for better rendering
+      const fontStyleEl = document.createElement('style');
+      fontStyleEl.textContent = `
+        * {
+          font-family: 'Arial', sans-serif !important;
+        }
+      `;
+      document.head.appendChild(fontStyleEl);
+      
       // Wait for DOM to update
-      await new Promise(resolve => setTimeout(resolve, 100));
+      await new Promise(resolve => setTimeout(resolve, 200));
       
       // Capture the entire document body
       const canvas = await html2canvas(document.body, {
@@ -340,13 +398,30 @@ const CircularAssessmentWheel = () => {
         scale: 1.5, // Good quality for PDF
         logging: false,
         useCORS: true,
-        allowTaint: true
+        allowTaint: true,
+        foreignObjectRendering: false, // Better compatibility
+        onclone: (clonedDoc) => {
+          // Ensure consistent styling in cloned document
+          const clonedStyle = clonedDoc.createElement('style');
+          clonedStyle.textContent = `
+            * {
+              font-family: 'Arial', sans-serif !important;
+            }
+          `;
+          clonedDoc.head.appendChild(clonedStyle);
+        }
       });
+      
+      // Clean up style element
+      document.head.removeChild(fontStyleEl);
       
       // Restore buttons
       buttons.forEach((btn, index) => {
         btn.style.display = originalDisplays[index];
       });
+      
+      // Restore original inputs
+      restoreInputsAfterExport();
       
       const imgData = canvas.toDataURL('image/png', 1.0);
       
@@ -379,9 +454,16 @@ const CircularAssessmentWheel = () => {
       console.error('Error generating PDF:', error);
       alert('Error generating PDF. Please try again.');
       
-      // Restore buttons on error
+      // Restore everything on error
       const buttons = document.querySelectorAll('button');
       buttons.forEach(btn => btn.style.display = '');
+      restoreInputsAfterExport();
+      
+      // Remove style element if it exists
+      const fontStyleEl = document.querySelector('style[data-temp-export]');
+      if (fontStyleEl) {
+        fontStyleEl.remove();
+      }
     } finally {
       setIsGeneratingPDF(false);
     }
