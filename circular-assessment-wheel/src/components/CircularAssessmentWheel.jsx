@@ -376,10 +376,9 @@ const CircularAssessmentWheel = () => {
         </div>
       </div>
     </div>
-  );
-};
+
   // State to track selected grades for each competency (0=F, 1=D, 2=C, 3=B, 4=A, null=unselected)
-export default CircularAssessmentWheel;
+
   const [selectedGrades, setSelectedGrades] = useState({
     research: null,
     concepts: null,
@@ -693,4 +692,5 @@ export default CircularAssessmentWheel;
     }
   };
 
+  export default CircularAssessmentWheel;
   //
