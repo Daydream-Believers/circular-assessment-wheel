@@ -391,11 +391,11 @@ const CircularAssessmentWheel = () => {
     <div className="flex flex-col items-center justify-center min-h-screen bg-white p-4 md:p-8">
       {/* Header with form fields and clear button */}
       <div className="w-full max-w-4xl mb-6 md:mb-8">
-        {/* Mobile layout - stacked */}
+        {/* Mobile layout - IMPROVED SPACING */}
         <div className="block md:hidden space-y-4">
-          <div className="space-y-3">
+          <div className="space-y-4">
             <div>
-              <label htmlFor="studentName-mobile" className="block text-sm font-medium text-gray-700 mb-1">
+              <label htmlFor="studentName-mobile" className="block text-sm font-medium text-gray-700 mb-2">
                 Name of the student
               </label>
               <input
@@ -404,11 +404,12 @@ const CircularAssessmentWheel = () => {
                 value={studentName}
                 onChange={(e) => setStudentName(e.target.value)}
                 placeholder="Jane"
+                maxLength="50"
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               />
             </div>
             <div>
-              <label htmlFor="projectName-mobile" className="block text-sm font-medium text-gray-700 mb-1">
+              <label htmlFor="projectName-mobile" className="block text-sm font-medium text-gray-700 mb-2">
                 Name of the project
               </label>
               <input
@@ -417,21 +418,22 @@ const CircularAssessmentWheel = () => {
                 value={projectName}
                 onChange={(e) => setProjectName(e.target.value)}
                 placeholder="Campaign for Kindness"
+                maxLength="50"
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               />
             </div>
             <div>
-              <label htmlFor="qualificationLevel-mobile" className="block text-sm font-medium text-gray-700 mb-1">
+              <label htmlFor="qualificationLevel-mobile" className="block text-sm font-medium text-gray-700 mb-2">
                 Select Qualification Level
               </label>
               <select
                 id="qualificationLevel-mobile"
                 value={qualificationLevel}
                 onChange={(e) => setQualificationLevel(e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm"
               >
-                <option value="Creative Thinking Qualification Level 5">Creative Thinking Qualification Level 5</option>
-                <option value="Creative Thinking Qualification Level 6">Creative Thinking Qualification Level 6</option>
+                <option value="Creative Thinking Qualification Level 5">Level 5</option>
+                <option value="Creative Thinking Qualification Level 6">Level 6</option>
               </select>
             </div>
           </div>
@@ -487,13 +489,13 @@ const CircularAssessmentWheel = () => {
           </div>
         </div>
 
-        {/* Desktop layout - side by side */}
+        {/* Desktop layout - IMPROVED SPACING */}
         <div className="hidden md:flex justify-between items-start">
           {/* Left side - Form fields and Clear button */}
           <div className="flex flex-col space-y-4">
             <div className="flex space-x-4">
               <div>
-                <label htmlFor="studentName" className="block text-sm font-medium text-gray-700 mb-1">
+                <label htmlFor="studentName" className="block text-sm font-medium text-gray-700 mb-2">
                   Name of the student
                 </label>
                 <input
@@ -502,11 +504,12 @@ const CircularAssessmentWheel = () => {
                   value={studentName}
                   onChange={(e) => setStudentName(e.target.value)}
                   placeholder="Jane"
-                  className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  maxLength="50"
+                  className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent w-40"
                 />
               </div>
               <div>
-                <label htmlFor="projectName" className="block text-sm font-medium text-gray-700 mb-1">
+                <label htmlFor="projectName" className="block text-sm font-medium text-gray-700 mb-2">
                   Name of the project
                 </label>
                 <input
@@ -515,19 +518,20 @@ const CircularAssessmentWheel = () => {
                   value={projectName}
                   onChange={(e) => setProjectName(e.target.value)}
                   placeholder="Campaign for Kindness"
-                  className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  maxLength="50"
+                  className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent w-48"
                 />
               </div>
             </div>
             <div>
-              <label htmlFor="qualificationLevel" className="block text-sm font-medium text-gray-700 mb-1">
+              <label htmlFor="qualificationLevel" className="block text-sm font-medium text-gray-700 mb-2">
                 Select Qualification Level
               </label>
               <select
                 id="qualificationLevel"
                 value={qualificationLevel}
                 onChange={(e) => setQualificationLevel(e.target.value)}
-                className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm min-w-0 w-80"
               >
                 <option value="Creative Thinking Qualification Level 5">Creative Thinking Qualification Level 5</option>
                 <option value="Creative Thinking Qualification Level 6">Creative Thinking Qualification Level 6</option>
@@ -537,7 +541,7 @@ const CircularAssessmentWheel = () => {
             {/* Clear button under form fields */}
             <button
               onClick={handleClearAll}
-              className="self-start px-4 py-2 text-sm bg-gray-200 hover:bg-gray-300 rounded transition-colors duration-200 text-gray-700"
+              className="self-start px-4 py-2 text-sm bg-gray-200 hover:bg-gray-300 rounded transition-colors duration-200 text-gray-700 mt-4"
             >
               Clear All
             </button>
@@ -588,7 +592,7 @@ const CircularAssessmentWheel = () => {
 
       {/* Circular assessment wheel */}
       <div className="w-full max-w-2xl lg:max-w-3xl px-4">
-        <svg width="100%" height="auto" viewBox="0 0 1130 1130" className="max-w-full">
+        <svg width="100%" viewBox="0 0 1130 1130" className="max-w-full">
           {/* Interactive segments */}
           {competencies.map((competency) => {
             return grades.map((grade) => {
@@ -653,7 +657,7 @@ const CircularAssessmentWheel = () => {
         </svg>
       </div>
 
-      {/* Status display */}
+      {/* Status display - UPDATED LAYOUT */}
       <div className="mt-6 md:mt-8 w-full max-w-6xl px-4">
         <h3 className="text-lg font-semibold mb-4 text-gray-800 text-center">Assessment Status</h3>
         <div className="space-y-4">
@@ -664,25 +668,21 @@ const CircularAssessmentWheel = () => {
             
             return (
               <div key={competency.key} className="bg-white rounded-lg shadow-md p-4 md:p-6">
-                <div className="flex flex-col md:flex-row md:items-start md:space-x-4">
-                  {/* Left side - Competency info */}
-                  <div className="flex items-center space-x-3 mb-3 md:mb-0 md:min-w-0 md:flex-shrink-0">
-                    <div 
-                      className="w-6 h-6 rounded-full flex-shrink-0"
-                      style={{ backgroundColor: competency.color }}
-                    ></div>
-                    <div className="min-w-0">
-                      <div className="text-lg font-semibold text-gray-900">{competency.label}</div>
-                      <div className="text-2xl font-bold text-gray-900">{gradeLabel}</div>
-                    </div>
-                  </div>
-                  
-                  {/* Right side - Rubric description */}
-                  <div className="flex-1 min-w-0">
-                    <p className={`text-sm leading-relaxed ${selectedGrade !== null ? 'text-gray-700' : 'text-gray-500 italic'}`}>
-                      {rubricDescription}
-                    </p>
-                  </div>
+                {/* Top row - Competency name, dot, and grade on same line */}
+                <div className="flex items-center space-x-3 mb-3">
+                  <div 
+                    className="w-6 h-6 rounded-full flex-shrink-0"
+                    style={{ backgroundColor: competency.color }}
+                  ></div>
+                  <div className="text-lg font-semibold text-gray-900">{competency.label}</div>
+                  <div className="text-2xl font-bold text-gray-900 ml-auto">{gradeLabel}</div>
+                </div>
+                
+                {/* Bottom row - Description takes full width */}
+                <div className="mt-3">
+                  <p className={`text-sm leading-relaxed ${selectedGrade !== null ? 'text-gray-700' : 'text-gray-500 italic'}`}>
+                    {rubricDescription}
+                  </p>
                 </div>
               </div>
             );
