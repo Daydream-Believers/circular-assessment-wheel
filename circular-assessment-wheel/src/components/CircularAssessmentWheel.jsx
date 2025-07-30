@@ -257,6 +257,23 @@ const CircularAssessmentWheel = () => {
     });
   };
 
+  // Hide grade labels during export
+  const hideGradeLabelsForExport = () => {
+    const gradeLabels = document.querySelector('.grade-labels');
+    if (gradeLabels) {
+      gradeLabels.style.display = 'none';
+      gradeLabels.setAttribute('data-hidden-for-export', 'true');
+    }
+  };
+
+  const showGradeLabelsAfterExport = () => {
+    const gradeLabels = document.querySelector('[data-hidden-for-export]');
+    if (gradeLabels) {
+      gradeLabels.style.display = '';
+      gradeLabels.removeAttribute('data-hidden-for-export');
+    }
+  };
+
   // Save wheel only (1000x1000px)
   const saveWheelOnly = async () => {
     if (!isFullyAssessed()) return;
@@ -728,8 +745,8 @@ const CircularAssessmentWheel = () => {
             });
           })}
 
-          {/* Grade Labels (A to F inside Research area) */}
-          <g className="pointer-events-none select-none">
+          {/* Grade Labels (A to F inside Research area) - Hidden during export */}
+          <g className="pointer-events-none select-none grade-labels">
             <text x="565" y="115" textAnchor="middle" fontSize="16" fontWeight="bold" fill="#171729">A</text>
             <text x="565" y="215" textAnchor="middle" fontSize="16" fontWeight="bold" fill="#171729">B</text>
             <text x="565" y="315" textAnchor="middle" fontSize="16" fontWeight="bold" fill="#171729">C</text>
