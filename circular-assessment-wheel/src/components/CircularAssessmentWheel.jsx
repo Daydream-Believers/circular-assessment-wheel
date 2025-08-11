@@ -221,7 +221,7 @@ const CircularAssessmentWheel = () => {
 
   // Helper functions for input replacement during export
   const replaceInputsForExport = () => {
-    document.querySelectorAll('input, select').forEach((el) => {
+    document.querySelectorAll('input, select, textarea').forEach((el) => {
       const wrapper = document.createElement('div');
       wrapper.textContent = el.value || el.placeholder || '';
       
