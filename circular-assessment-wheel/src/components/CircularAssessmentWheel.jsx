@@ -523,7 +523,7 @@ const CircularAssessmentWheel = () => {
             </div>
             <div>
               <label htmlFor="feedback-mobile" className="block text-sm font-medium text-gray-700 mb-2">
-                Additional feedback
+                Additional feedback <span className="text-gray-500 text-xs">({feedback.length}/500)</span>
               </label>
               <textarea
                 id="feedback-mobile"
@@ -688,7 +688,7 @@ const CircularAssessmentWheel = () => {
           <div className="flex-1 ml-8">
             <div>
               <label htmlFor="feedback-desktop" className="block text-sm font-medium text-gray-700 mb-2">
-                Additional feedback
+                Additional feedback <span className="text-gray-500 text-xs">({feedback.length}/500)</span>
               </label>
               <textarea
                 id="feedback-desktop"
