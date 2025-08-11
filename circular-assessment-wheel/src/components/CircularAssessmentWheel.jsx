@@ -509,7 +509,7 @@ const CircularAssessmentWheel = () => {
             </div>
             <div>
               <label htmlFor="qualificationLevel-mobile" className="block text-sm font-medium text-gray-700 mb-2">
-                Select Qualification Level
+                Qualification Level
               </label>
               <select
                 id="qualificationLevel-mobile"
@@ -523,7 +523,7 @@ const CircularAssessmentWheel = () => {
             </div>
             <div>
               <label htmlFor="feedback-mobile" className="block text-sm font-medium text-gray-700 mb-2">
-                Add your feedback
+                Additional feedback
               </label>
               <textarea
                 id="feedback-mobile"
@@ -622,7 +622,7 @@ const CircularAssessmentWheel = () => {
             </div>
             <div>
               <label htmlFor="qualificationLevel" className="block text-sm font-medium text-gray-700 mb-2">
-                Select Qualification Level
+                Qualification Level
               </label>
               <select
                 id="qualificationLevel"
@@ -688,7 +688,7 @@ const CircularAssessmentWheel = () => {
           <div className="flex-1 ml-8">
             <div>
               <label htmlFor="feedback-desktop" className="block text-sm font-medium text-gray-700 mb-2">
-                Add your feedback
+                Additional feedback
               </label>
               <textarea
                 id="feedback-desktop"
