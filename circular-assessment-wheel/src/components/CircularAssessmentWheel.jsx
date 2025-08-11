@@ -232,7 +232,7 @@ const CircularAssessmentWheel = () => {
       wrapper.style.border = 'none'; // Remove borders for clean text
       wrapper.style.borderRadius = computedStyle.borderRadius;
       wrapper.style.width = `${el.offsetWidth}px`;
-      wrapper.style.height = `${el.offsetHeight}px`;
+      wrapper.style.minHeight = `${el.offsetHeight}px`;
       wrapper.style.display = 'block';
       wrapper.style.whiteSpace = 'pre-wrap';  // Preserve line breaks
       wrapper.style.wordWrap = 'break-word';  // Handle long words
@@ -521,77 +521,35 @@ const CircularAssessmentWheel = () => {
                 <option value="Creative Thinking Qualification Level 6">Level 6</option>
               </select>
             </div>
+            <div>
+              <label htmlFor="feedback-mobile" className="block text-sm font-medium text-gray-700 mb-2">
+                Add your feedback
+              </label>
+              <textarea
+                id="feedback-mobile"
+                value={feedback}
+                onChange={(e) => setFeedback(e.target.value)}
+                placeholder="Enter your formative assessment feedback here..."
+                maxLength="500"
+                rows="3"
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-vertical"
+              />
+            </div>
           </div>
           
-          <div>
-  <label htmlFor="feedback-mobile" className="block text-sm font-medium text-gray-700 mb-2">
-    Add your feedback
-  </label>
-  <textarea
-    id="feedback-mobile"
-    value={feedback}
-    onChange={(e) => setFeedback(e.target.value)}
-    placeholder="Enter your formative assessment feedback here..."
-    maxLength="500"
-    rows="3"
-    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-vertical"
-  />
-</div>
-          
-       {/* All buttons in horizontal line */}
-<div className="flex space-x-3 mt-4">
-  <button
-    onClick={handleClearAll}
-    className="px-4 py-2 text-sm bg-gray-200 hover:bg-gray-300 rounded transition-colors duration-200 text-gray-700"
-  >
-    Clear All
-  </button>
-  
-  <button
-    onClick={saveWheelOnly}
-    disabled={!isFullyAssessed() || isGeneratingWheel}
-    className={`px-4 py-2 text-sm rounded transition-colors duration-200 flex items-center space-x-2 ${
-      isFullyAssessed() && !isGeneratingWheel
-        ? 'bg-blue-600 hover:bg-blue-700 text-white'
-        : 'bg-gray-300 text-gray-500 cursor-not-allowed'
-    }`}
-  >
-    {isGeneratingWheel ? (
-      <>
-        <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
-        <span>Saving...</span>
-      </>
-    ) : (
-      <span>Save Wheel</span>
-    )}
-  </button>
-  
-  <button
-    onClick={saveFullPagePDF}
-    disabled={!isFullyAssessed() || isGeneratingPDF}
-    className={`px-4 py-2 text-sm rounded transition-colors duration-200 flex items-center space-x-2 ${
-      isFullyAssessed() && !isGeneratingPDF
-        ? 'bg-green-600 hover:bg-green-700 text-white'
-        : 'bg-gray-300 text-gray-500 cursor-not-allowed'
-    }`}
-  >
-    {isGeneratingPDF ? (
-      <>
-        <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
-        <span>Saving...</span>
-      </>
-    ) : (
-      <span>Save PDF</span>
-    )}
-  </button>
-</div>
-          
-          {/* Save buttons for mobile */}
-          <div className="flex flex-col space-y-3">
+          {/* All buttons in horizontal line for mobile */}
+          <div className="flex space-x-3 mt-4">
+            <button
+              onClick={handleClearAll}
+              className="px-4 py-2 text-sm bg-gray-200 hover:bg-gray-300 rounded transition-colors duration-200 text-gray-700"
+            >
+              Clear All
+            </button>
+            
             <button
               onClick={saveWheelOnly}
               disabled={!isFullyAssessed() || isGeneratingWheel}
-              className={`w-full px-4 py-2 text-sm rounded transition-colors duration-200 flex items-center justify-center space-x-2 ${
+              className={`px-4 py-2 text-sm rounded transition-colors duration-200 flex items-center space-x-2 ${
                 isFullyAssessed() && !isGeneratingWheel
                   ? 'bg-blue-600 hover:bg-blue-700 text-white'
                   : 'bg-gray-300 text-gray-500 cursor-not-allowed'
@@ -600,7 +558,7 @@ const CircularAssessmentWheel = () => {
               {isGeneratingWheel ? (
                 <>
                   <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
-                  <span>Saving Wheel...</span>
+                  <span>Saving...</span>
                 </>
               ) : (
                 <span>Save Wheel</span>
@@ -610,7 +568,7 @@ const CircularAssessmentWheel = () => {
             <button
               onClick={saveFullPagePDF}
               disabled={!isFullyAssessed() || isGeneratingPDF}
-              className={`w-full px-4 py-2 text-sm rounded transition-colors duration-200 flex items-center justify-center space-x-2 ${
+              className={`px-4 py-2 text-sm rounded transition-colors duration-200 flex items-center space-x-2 ${
                 isFullyAssessed() && !isGeneratingPDF
                   ? 'bg-green-600 hover:bg-green-700 text-white'
                   : 'bg-gray-300 text-gray-500 cursor-not-allowed'
@@ -619,10 +577,10 @@ const CircularAssessmentWheel = () => {
               {isGeneratingPDF ? (
                 <>
                   <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
-                  <span>Saving PDF...</span>
+                  <span>Saving...</span>
                 </>
               ) : (
-                <span>Save Full PDF</span>
+                <span>Save PDF</span>
               )}
             </button>
           </div>
@@ -630,7 +588,7 @@ const CircularAssessmentWheel = () => {
 
         {/* Desktop layout - IMPROVED SPACING */}
         <div className="hidden md:flex justify-between items-start">
-          {/* Left side - Form fields and Clear button */}
+          {/* Left side - Form fields and buttons */}
           <div className="flex flex-col space-y-4">
             <div className="flex space-x-4">
               <div>
@@ -676,26 +634,75 @@ const CircularAssessmentWheel = () => {
                 <option value="Creative Thinking Qualification Level 6">Creative Thinking Qualification Level 6</option>
               </select>
             </div>
-
-
             
-       {/* Right side - Feedback field */}
-<div className="flex-1 ml-8">
-  <div>
-    <label htmlFor="feedback-desktop" className="block text-sm font-medium text-gray-700 mb-2">
-      Add your feedback
-    </label>
-    <textarea
-      id="feedback-desktop"
-      value={feedback}
-      onChange={(e) => setFeedback(e.target.value)}
-      placeholder="Enter your formative assessment feedback here..."
-      maxLength="500"
-      rows="6"
-      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm resize-vertical"
-    />
-  </div>
-</div>
+            {/* All buttons in horizontal line */}
+            <div className="flex space-x-3 mt-4">
+              <button
+                onClick={handleClearAll}
+                className="px-4 py-2 text-sm bg-gray-200 hover:bg-gray-300 rounded transition-colors duration-200 text-gray-700"
+              >
+                Clear All
+              </button>
+              
+              <button
+                onClick={saveWheelOnly}
+                disabled={!isFullyAssessed() || isGeneratingWheel}
+                className={`px-4 py-2 text-sm rounded transition-colors duration-200 flex items-center space-x-2 ${
+                  isFullyAssessed() && !isGeneratingWheel
+                    ? 'bg-blue-600 hover:bg-blue-700 text-white'
+                    : 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                }`}
+              >
+                {isGeneratingWheel ? (
+                  <>
+                    <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+                    <span>Saving...</span>
+                  </>
+                ) : (
+                  <span>Save Wheel</span>
+                )}
+              </button>
+              
+              <button
+                onClick={saveFullPagePDF}
+                disabled={!isFullyAssessed() || isGeneratingPDF}
+                className={`px-4 py-2 text-sm rounded transition-colors duration-200 flex items-center space-x-2 ${
+                  isFullyAssessed() && !isGeneratingPDF
+                    ? 'bg-green-600 hover:bg-green-700 text-white'
+                    : 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                }`}
+              >
+                {isGeneratingPDF ? (
+                  <>
+                    <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+                    <span>Saving...</span>
+                  </>
+                ) : (
+                  <span>Save PDF</span>
+                )}
+              </button>
+            </div>
+          </div>
+
+          {/* Right side - Feedback field */}
+          <div className="flex-1 ml-8">
+            <div>
+              <label htmlFor="feedback-desktop" className="block text-sm font-medium text-gray-700 mb-2">
+                Add your feedback
+              </label>
+              <textarea
+                id="feedback-desktop"
+                value={feedback}
+                onChange={(e) => setFeedback(e.target.value)}
+                placeholder="Enter your formative assessment feedback here..."
+                maxLength="500"
+                rows="6"
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm resize-vertical"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
 
       {/* Circular assessment wheel */}
       <div className="w-full max-w-2xl lg:max-w-3xl px-4">
