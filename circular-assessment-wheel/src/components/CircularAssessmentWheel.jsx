@@ -233,8 +233,9 @@ const CircularAssessmentWheel = () => {
       wrapper.style.borderRadius = computedStyle.borderRadius;
       wrapper.style.width = `${el.offsetWidth}px`;
       wrapper.style.height = `${el.offsetHeight}px`;
-      wrapper.style.display = 'flex';
-      wrapper.style.alignItems = 'center';
+      wrapper.style.display = 'block';
+      wrapper.style.whiteSpace = 'pre-wrap';  // Preserve line breaks
+      wrapper.style.wordWrap = 'break-word';  // Handle long words
       wrapper.style.color = '#171729';
       wrapper.style.backgroundColor = 'transparent'; // No background
       wrapper.style.boxSizing = 'border-box';
