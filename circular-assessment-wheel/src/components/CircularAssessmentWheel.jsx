@@ -18,6 +18,7 @@ const CircularAssessmentWheel = () => {
   const [qualificationLevel, setQualificationLevel] = useState('Creative Thinking Qualification Level 5');
   const [isGeneratingWheel, setIsGeneratingWheel] = useState(false);
   const [isGeneratingPDF, setIsGeneratingPDF] = useState(false);
+  const [feedback, setFeedback] = useState('');
 
   // Competencies configuration - matching your image angles
   const competencies = [
@@ -135,6 +136,7 @@ const CircularAssessmentWheel = () => {
     setStudentName('');
     setProjectName('');
     setQualificationLevel('Creative Thinking Qualification Level 5');
+    setFeedback('');
   };
 
   // Generate path for a segment
@@ -520,6 +522,21 @@ const CircularAssessmentWheel = () => {
             </div>
           </div>
           
+          <div>
+  <label htmlFor="feedback-mobile" className="block text-sm font-medium text-gray-700 mb-2">
+    Add your feedback
+  </label>
+  <textarea
+    id="feedback-mobile"
+    value={feedback}
+    onChange={(e) => setFeedback(e.target.value)}
+    placeholder="Enter your formative assessment feedback here..."
+    maxLength="500"
+    rows="3"
+    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-vertical"
+  />
+</div>
+          
           <div className="flex justify-center">
             <button
               onClick={handleClearAll}
@@ -619,6 +636,21 @@ const CircularAssessmentWheel = () => {
                 <option value="Creative Thinking Qualification Level 6">Creative Thinking Qualification Level 6</option>
               </select>
             </div>
+
+            <div>
+  <label htmlFor="feedback" className="block text-sm font-medium text-gray-700 mb-2">
+    Add your feedback
+  </label>
+  <textarea
+    id="feedback"
+    value={feedback}
+    onChange={(e) => setFeedback(e.target.value)}
+    placeholder="Enter your formative assessment feedback here..."
+    maxLength="500"
+    rows="3"
+    className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm min-w-0 w-80 resize-vertical"
+  />
+</div>
             
             {/* Clear button under form fields */}
             <button
