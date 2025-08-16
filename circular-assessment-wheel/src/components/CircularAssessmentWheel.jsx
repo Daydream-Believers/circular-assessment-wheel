@@ -318,6 +318,15 @@ const CircularAssessmentWheel = () => {
       clonedSvg.style.width = '750px';
       clonedSvg.style.height = '750px';
       clonedSvg.style.maxWidth = '750px';
+
+      // Add simple text legend with color names
+      const legendField = document.createElement('div');
+      legendField.textContent = 'Green: Research  |  Yellow: Concepts  |  Orange: Fail & Fix  |  Blue: Communicate  |  Purple: Evaluate';
+      legendField.style.fontSize = '14px';
+      legendField.style.color = '#171729';
+      legendField.style.marginTop = '15px';
+      legendField.style.textAlign = 'center';
+      legendField.style.fontFamily = 'Arial, sans-serif';
       
       // Add date field at bottom
       const dateField = document.createElement('div');
@@ -330,6 +339,7 @@ const CircularAssessmentWheel = () => {
       
       tempContainer.appendChild(nameContainer);
       tempContainer.appendChild(clonedSvg);
+      tempContainer.appendChild(legendField);
       tempContainer.appendChild(dateField);
       document.body.appendChild(tempContainer);
       
