@@ -338,6 +338,10 @@ const CircularAssessmentWheel = () => {
       </div>
       `;
 
+      // Debug logging
+      console.log('Legend container created:', legendContainer);
+      console.log('Legend container innerHTML:', legendContainer.innerHTML);
+
       
       // Add date field at bottom
       const dateField = document.createElement('div');
