@@ -319,7 +319,7 @@ const CircularAssessmentWheel = () => {
       clonedSvg.style.height = '750px';
       clonedSvg.style.maxWidth = '750px';
       
-     // Add legend for competencies
+// Add legend for competencies
 const legendContainer = document.createElement('div');
 legendContainer.style.display = 'flex';
 legendContainer.style.justifyContent = 'center';
@@ -328,7 +328,16 @@ legendContainer.style.gap = '15px';
 legendContainer.style.marginTop = '20px';
 legendContainer.style.fontFamily = 'Arial, sans-serif';
 
-competencies.forEach(competency => {
+// Define competencies directly here to avoid scope issues
+const wheelCompetencies = [
+  { key: 'research', label: 'Research', color: '#58D55E' },
+  { key: 'concepts', label: 'Concepts', color: '#FFDC35' },
+  { key: 'failFix', label: 'Fail & Fix', color: '#FF8E25' },
+  { key: 'communicate', label: 'Communicate', color: '#44B2FF' },
+  { key: 'evaluate', label: 'Evaluate', color: '#8B63FF' }
+];
+
+wheelCompetencies.forEach(competency => {
   const legendItem = document.createElement('div');
   legendItem.style.display = 'flex';
   legendItem.style.alignItems = 'center';
