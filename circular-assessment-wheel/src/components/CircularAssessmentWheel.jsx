@@ -327,11 +327,6 @@ legendField.style.color = '#171729';
 legendField.style.marginTop = '15px';
 legendField.style.textAlign = 'center';
 legendField.style.fontFamily = 'Arial, sans-serif';
-
-      // Debug logging
-      console.log('Legend container created:', legendContainer);
-      console.log('Legend container innerHTML:', legendContainer.innerHTML);
-
       
       // Add date field at bottom
       const dateField = document.createElement('div');
@@ -344,6 +339,7 @@ legendField.style.fontFamily = 'Arial, sans-serif';
       
       tempContainer.appendChild(nameContainer);
       tempContainer.appendChild(clonedSvg);
+      tempContainer.appendChild(legendField);
       tempContainer.appendChild(dateField);
       document.body.appendChild(tempContainer);
       
