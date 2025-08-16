@@ -319,19 +319,51 @@ const CircularAssessmentWheel = () => {
       clonedSvg.style.height = '750px';
       clonedSvg.style.maxWidth = '750px';
       
-      // Add date field at bottom
-      const dateField = document.createElement('div');
-      dateField.textContent = 'Date: ________________________';
-      dateField.style.fontSize = '18px';
-      dateField.style.color = '#171729';
-      dateField.style.marginTop = '20px';
-      dateField.style.textAlign = 'center';
-      dateField.style.fontFamily = 'Arial, sans-serif';
-      
-      tempContainer.appendChild(nameContainer);
-      tempContainer.appendChild(clonedSvg);
-      tempContainer.appendChild(dateField);
-      document.body.appendChild(tempContainer);
+     // Add legend for competencies
+const legendContainer = document.createElement('div');
+legendContainer.style.display = 'flex';
+legendContainer.style.justifyContent = 'center';
+legendContainer.style.flexWrap = 'wrap';
+legendContainer.style.gap = '15px';
+legendContainer.style.marginTop = '20px';
+legendContainer.style.fontFamily = 'Arial, sans-serif';
+
+competencies.forEach(competency => {
+  const legendItem = document.createElement('div');
+  legendItem.style.display = 'flex';
+  legendItem.style.alignItems = 'center';
+  legendItem.style.gap = '6px';
+  
+  const colorDot = document.createElement('div');
+  colorDot.style.width = '12px';
+  colorDot.style.height = '12px';
+  colorDot.style.borderRadius = '50%';
+  colorDot.style.backgroundColor = competency.color;
+  
+  const labelText = document.createElement('span');
+  labelText.textContent = competency.label;
+  labelText.style.fontSize = '14px';
+  labelText.style.color = '#171729';
+  labelText.style.fontFamily = 'Arial, sans-serif';
+  
+  legendItem.appendChild(colorDot);
+  legendItem.appendChild(labelText);
+  legendContainer.appendChild(legendItem);
+});
+
+// Add date field at bottom
+const dateField = document.createElement('div');
+dateField.textContent = 'Date: ________________________';
+dateField.style.fontSize = '18px';
+dateField.style.color = '#171729';
+dateField.style.marginTop = '20px';
+dateField.style.textAlign = 'center';
+dateField.style.fontFamily = 'Arial, sans-serif';
+
+tempContainer.appendChild(nameContainer);
+tempContainer.appendChild(clonedSvg);
+tempContainer.appendChild(legendContainer);
+tempContainer.appendChild(dateField);
       
       // Wait for fonts and styles to load
       await new Promise(resolve => setTimeout(resolve, 100));
