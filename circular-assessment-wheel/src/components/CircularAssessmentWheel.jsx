@@ -319,24 +319,54 @@ const CircularAssessmentWheel = () => {
       clonedSvg.style.height = '750px';
       clonedSvg.style.maxWidth = '750px';
 
-      // Add simple static legend
-      const legendContainer = document.createElement('div');
-      legendContainer.style.textAlign = 'center';
-      legendContainer.style.marginTop = '20px';
-      legendContainer.style.fontSize = '14px';
-      legendContainer.style.color = '#171729';
-      legendContainer.style.fontFamily = 'Arial, sans-serif';
-      legendContainer.style.lineHeight = '1.4';
-      
-      legendContainer.innerHTML = `
-      <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
-      <span><span style="display: inline-block; width: 12px; height: 12px; border-radius: 50%; background-color: #58D55E; margin-right: 6px; vertical-align: middle;"></span>Research</span>
-      <span><span style="display: inline-block; width: 12px; height: 12px; border-radius: 50%; background-color: #FFDC35; margin-right: 6px; vertical-align: middle;"></span>Concepts</span>
-      <span><span style="display: inline-block; width: 12px; height: 12px; border-radius: 50%; background-color: #FF8E25; margin-right: 6px; vertical-align: middle;"></span>Fail & Fix</span>
-      <span><span style="display: inline-block; width: 12px; height: 12px; border-radius: 50%; background-color: #44B2FF; margin-right: 6px; vertical-align: middle;"></span>Communicate</span>
-      <span><span style="display: inline-block; width: 12px; height: 12px; border-radius: 50%; background-color: #8B63FF; margin-right: 6px; vertical-align: middle;"></span>Evaluate</span>
-      </div>
-      `;
+ // Add simple static legend - manual creation
+const legendContainer = document.createElement('div');
+legendContainer.style.textAlign = 'center';
+legendContainer.style.marginTop = '20px';
+legendContainer.style.fontSize = '14px';
+legendContainer.style.color = '#171729';
+legendContainer.style.fontFamily = 'Arial, sans-serif';
+
+const legendRow = document.createElement('div');
+legendRow.style.display = 'flex';
+legendRow.style.justifyContent = 'center';
+legendRow.style.gap = '20px';
+legendRow.style.flexWrap = 'wrap';
+
+// Create each legend item manually
+const legendItems = [
+  { color: '#58D55E', label: 'Research' },
+  { color: '#FFDC35', label: 'Concepts' },
+  { color: '#FF8E25', label: 'Fail & Fix' },
+  { color: '#44B2FF', label: 'Communicate' },
+  { color: '#8B63FF', label: 'Evaluate' }
+];
+
+legendItems.forEach(item => {
+  const span = document.createElement('span');
+  span.style.display = 'flex';
+  span.style.alignItems = 'center';
+  span.style.gap = '6px';
+  
+  const dot = document.createElement('span');
+  dot.style.display = 'inline-block';
+  dot.style.width = '12px';
+  dot.style.height = '12px';
+  dot.style.borderRadius = '50%';
+  dot.style.backgroundColor = item.color;
+  
+  const text = document.createElement('span');
+  text.textContent = item.label;
+  text.style.fontFamily = 'Arial, sans-serif';
+  text.style.fontSize = '14px';
+  text.style.color = '#171729';
+  
+  span.appendChild(dot);
+  span.appendChild(text);
+  legendRow.appendChild(span);
+});
+
+legendContainer.appendChild(legendRow);
 
       // Debug logging
       console.log('Legend container created:', legendContainer);
