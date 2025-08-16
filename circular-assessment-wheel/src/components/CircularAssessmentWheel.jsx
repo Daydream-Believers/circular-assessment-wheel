@@ -318,6 +318,26 @@ const CircularAssessmentWheel = () => {
       clonedSvg.style.width = '750px';
       clonedSvg.style.height = '750px';
       clonedSvg.style.maxWidth = '750px';
+
+      // Add simple static legend
+      const legendContainer = document.createElement('div');
+      legendContainer.style.textAlign = 'center';
+      legendContainer.style.marginTop = '20px';
+      legendContainer.style.fontSize = '14px';
+      legendContainer.style.color = '#171729';
+      legendContainer.style.fontFamily = 'Arial, sans-serif';
+      legendContainer.style.lineHeight = '1.4';
+      
+      legendContainer.innerHTML = `
+      <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+      <span><span style="display: inline-block; width: 12px; height: 12px; border-radius: 50%; background-color: #58D55E; margin-right: 6px; vertical-align: middle;"></span>Research</span>
+      <span><span style="display: inline-block; width: 12px; height: 12px; border-radius: 50%; background-color: #FFDC35; margin-right: 6px; vertical-align: middle;"></span>Concepts</span>
+      <span><span style="display: inline-block; width: 12px; height: 12px; border-radius: 50%; background-color: #FF8E25; margin-right: 6px; vertical-align: middle;"></span>Fail & Fix</span>
+      <span><span style="display: inline-block; width: 12px; height: 12px; border-radius: 50%; background-color: #44B2FF; margin-right: 6px; vertical-align: middle;"></span>Communicate</span>
+      <span><span style="display: inline-block; width: 12px; height: 12px; border-radius: 50%; background-color: #8B63FF; margin-right: 6px; vertical-align: middle;"></span>Evaluate</span>
+      </div>
+      `;
+
       
       // Add date field at bottom
       const dateField = document.createElement('div');
