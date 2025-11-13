@@ -410,6 +410,16 @@ const CircularAssessmentWheel = () => {
       const originalHideDisplays = Array.from(hideInExport).map(el => el.style.display);
       hideInExport.forEach(el => el.style.display = 'none');
 
+      // CRITICAL: Hide mobile layout and show desktop layout for PDF export
+      // Use data attributes for reliable selection across all screen sizes
+      const mobileLayouts = document.querySelectorAll('[data-mobile-layout]');
+      const originalMobileDisplays = Array.from(mobileLayouts).map(el => el.style.display);
+      mobileLayouts.forEach(el => el.style.display = 'none');
+
+      const desktopLayouts = document.querySelectorAll('[data-desktop-layout]');
+      const originalDesktopDisplays = Array.from(desktopLayouts).map(el => el.style.display);
+      desktopLayouts.forEach(el => el.style.display = 'flex');
+
       // Force consistent A4 width for all devices (210mm = ~794px at 96dpi)
       // Using a comfortable reading width that will fit well on A4
       const originalBodyWidth = document.body.style.width;
@@ -507,6 +517,16 @@ const CircularAssessmentWheel = () => {
         el.style.display = originalHideDisplays[index];
       });
 
+      // Restore mobile layouts
+      mobileLayouts.forEach((el, index) => {
+        el.style.display = originalMobileDisplays[index];
+      });
+
+      // Restore desktop layouts
+      desktopLayouts.forEach((el, index) => {
+        el.style.display = originalDesktopDisplays[index];
+      });
+
       // Restore original inputs
       restoreInputsAfterExport();
 
@@ -584,7 +604,7 @@ const CircularAssessmentWheel = () => {
       {/* Header with form fields and clear button */}
       <div className="w-full max-w-4xl mb-6 md:mb-8">
         {/* Mobile layout - IMPROVED SPACING */}
-        <div className="block md:hidden space-y-4">
+        <div className="block md:hidden space-y-4" data-mobile-layout="true">
           <div className="space-y-4">
             <div>
               <label htmlFor="studentName-mobile" className="block text-sm font-medium text-gray-700 mb-2">
@@ -700,7 +720,7 @@ const CircularAssessmentWheel = () => {
         </div>
 
         {/* Desktop layout - IMPROVED SPACING */}
-        <div className="hidden md:flex justify-between items-start">
+        <div className="hidden md:flex justify-between items-start" data-desktop-layout="true">
           {/* Left side - Form fields only */}
           <div className="flex flex-col space-y-4">
             <div className="flex space-x-4">
