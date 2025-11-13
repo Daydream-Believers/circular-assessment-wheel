@@ -444,6 +444,13 @@ const CircularAssessmentWheel = () => {
         .pb-10 {
           padding-bottom: 1.5rem !important;
         }
+        /* Force desktop layout to show and hide mobile layout during PDF export */
+        .block.md\\:hidden {
+          display: none !important;
+        }
+        .hidden.md\\:flex {
+          display: flex !important;
+        }
       `;
       document.head.appendChild(fontStyleEl);
 
