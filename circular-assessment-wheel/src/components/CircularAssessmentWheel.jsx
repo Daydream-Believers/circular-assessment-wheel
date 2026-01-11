@@ -16,9 +16,10 @@ const CircularAssessmentWheel = () => {
   const [studentName, setStudentName] = useState('');
   const [projectName, setProjectName] = useState('');
   const [qualificationLevel, setQualificationLevel] = useState('Creative Thinking Qualification Level 5');
+  const [additionalFeedback, setAdditionalFeedback] = useState('');
+  const [finalGrade, setFinalGrade] = useState('');
   const [isGeneratingWheel, setIsGeneratingWheel] = useState(false);
   const [isGeneratingPDF, setIsGeneratingPDF] = useState(false);
-  const [feedback, setFeedback] = useState('');
 
   // Competencies configuration - matching your image angles
   const competencies = [
@@ -113,6 +114,80 @@ const CircularAssessmentWheel = () => {
         1: "Reflection is limited and mostly descriptive. Decisions are acknowledged but not evaluated. Shows minimal engagement with learning or growth.",
         0: "No meaningful reflection offered. Lacks insight into process, learning, or outcomes."
       }
+    },
+    "Creative Innovation Qualification Level 5": {
+      research: {
+        4: "Demonstrates curiosity and initiative using a wide range of reliable sources (secondary + some primary). Distinguishes facts from observations and converts them into actionable insights. Defines a clear opportunity supported by evidence and context.",
+        3: "Uses varied, relevant sources to explore the brief. Identifies useful patterns and links to potential opportunities. Growing understanding of how insight informs innovation.",
+        2: "Uses several sources, often guided. Collects relevant facts and observations, but interpretation is basic. Opportunity is emerging but lacks focus.",
+        1: "Relies mainly on given or limited sources. Minimal analysis or user/market understanding.",
+        0: "Little or no research evident; misunderstanding of the problem or no insight."
+      },
+      concepts: {
+        4: "Generates a wide range of original, insight-led ideas. Concepts demonstrate creativity, relevance, and value for a defined user or context. Feasibility (time, cost, resources) considered; potential impact articulated.",
+        3: "Develops several relevant ideas showing some originality and understanding of user value. Awareness of feasibility and emerging consideration of impact.",
+        2: "Generates a few predictable ideas with limited originality. Value implied but underdeveloped. Feasibility or impact not fully explored.",
+        1: "Produces safe or narrow ideas; weak connection between the idea and the opportunity.",
+        0: "No viable or relevant ideas generated."
+      },
+      failFix: {
+        4: "Tests ideas with users/peers; records and analyses feedback (Change → Why → Result). Iterations are purposeful and clearly improve value, fit, or feasibility. Demonstrates adaptability and resilience.",
+        3: "Tests ideas and considers feedback. Adjustments show partial improvement and awareness of constraints.",
+        2: "Makes limited or prompted changes. Feedback is used inconsistently or superficially. Improvements minor.",
+        1: "Makes surface-level changes with little evidence of reasoning or testing.",
+        0: "No evidence of iteration or adaptation."
+      },
+      communicate: {
+        4: "Communicates clearly and persuasively using professional formats (pitch, storyboard, proposal). Storytelling highlights problem, insight, value, and impact. Visuals/data used effectively.",
+        3: "Presents work clearly with some storytelling and a focus on value. Structure mostly clear; audience engagement emerging.",
+        2: "Communicates an idea in a basic way. Story partly clear but lacks focus on value or feasibility.",
+        1: "Presentation incomplete or confusing. Limited audience awareness or clarity.",
+        0: "No meaningful communication or presentation provided."
+      },
+      evaluate: {
+        4: "Reflects thoughtfully on the full journey. Explains how research, insights, and iterations shaped value, feasibility, and impact. Identifies clear next steps for development or implementation.",
+        3: "Reflects on key decisions, successes, and challenges. Recognises value and feasibility in outcomes; identifies at least one improvement.",
+        2: "Provides basic, mostly descriptive reflection. Mentions strengths and weaknesses, but limited analysis of outcomes or learning.",
+        1: "Reflection vague or minimal. Describes activity rather than evaluating results or growth.",
+        0: "No reflection or evaluation provided."
+      }
+    },
+    "Creative Innovation Qualification Level 6": {
+      research: {
+        4: "Independently leads research using diverse primary and secondary sources. Synthesises complex data into original insights that redefine the problem or reveal new opportunities. Research is investigative, strategic, and clearly informs direction.",
+        3: "Conducts purposeful research using relevant sources. Draws meaningful connections between findings and opportunity areas. Some synthesis and independent analysis evident.",
+        2: "Collects appropriate information with limited depth or interpretation. Research connects to the brief but lacks strong insight or strategic direction.",
+        1: "Uses narrow or descriptive research. Limited interpretation or connection between findings and innovation focus.",
+        0: "Minimal or irrelevant research. No meaningful insight or opportunity identified."
+      },
+      concepts: {
+        4: "Generates bold, original concepts transforming insights into high-value opportunities. Considers scalability, sustainability, and measurable impact. Demonstrates strategic thinking and creative leadership.",
+        3: "Develops several innovative ideas linked to insights and user value. Considers feasibility and longer-term potential; originality and purpose evident.",
+        2: "Produces workable ideas with some link to insight and value, though originality or impact is limited. Feasibility is partly explored but lacks strategic detail.",
+        1: "Generates predictable or incomplete ideas. Limited understanding of value or wider impact.",
+        0: "No viable or relevant ideas produced; work disconnected from research or user."
+      },
+      failFix: {
+        4: "Independently tests and validates concepts through multiple iterations with users, stakeholders, or real-world contexts. Records and interprets evidence critically to refine value, fit, and feasibility. Iteration is strategic, data-driven, and purposeful.",
+        3: "Tests ideas in different contexts. Feedback meaningfully informs development. Shows clear improvement in outcome quality and user fit.",
+        2: "Conducts limited testing or evaluation. Feedback acknowledged but not fully analysed or acted upon.",
+        1: "Minimal evidence of testing or adaptation. Adjustments superficial or unmeasured.",
+        0: "No testing, validation, or iteration is evident."
+      },
+      communicate: {
+        4: "Communicates with clarity, confidence, and persuasive impact. Uses storytelling, data, and visuals strategically to inspire belief in the innovation's value and potential. Tailors the message effectively to different audiences.",
+        3: "Presents ideas clearly and engagingly. Storyline highlights key insights and value. Developing the skill of adapting communication to the audience or purpose.",
+        2: "Communicates clearly but without strong persuasion or depth. The message partly connects to value or feasibility.",
+        1: "Presentation inconsistent or unclear. Little evidence of audience awareness or insight-driven messaging.",
+        0: "No meaningful communication is evident."
+      },
+      evaluate: {
+        4: "Evaluates the full innovation process critically and holistically. Explains how research, iteration, and decision-making shaped measurable value and impact. Identifies future potential or scalability; reflection shows ownership and strategic foresight.",
+        3: "Reflects thoughtfully on process and outcomes. Recognises how choices influenced value and feasibility. Identifies realistic improvements or next-stage actions.",
+        2: "Reflects on outcomes with some awareness of what worked or didn't. Limited critical analysis or connection to strategic learning.",
+        1: "Reflection minimal or descriptive. Little awareness of how learning influences future innovation.",
+        0: "No reflection or learning evident."
+      }
     }
   };
 
@@ -136,7 +211,8 @@ const CircularAssessmentWheel = () => {
     setStudentName('');
     setProjectName('');
     setQualificationLevel('Creative Thinking Qualification Level 5');
-    setFeedback('');
+    setAdditionalFeedback('');
+    setFinalGrade('');
   };
 
   // Generate path for a segment
@@ -224,7 +300,7 @@ const CircularAssessmentWheel = () => {
     document.querySelectorAll('input, select, textarea').forEach((el) => {
       const wrapper = document.createElement('div');
       wrapper.textContent = el.value || el.placeholder || '';
-      
+
       // Copy computed styles
       const computedStyle = window.getComputedStyle(el);
       wrapper.style.fontSize = computedStyle.fontSize;
@@ -232,16 +308,26 @@ const CircularAssessmentWheel = () => {
       wrapper.style.border = 'none'; // Remove borders for clean text
       wrapper.style.borderRadius = computedStyle.borderRadius;
       wrapper.style.width = `${el.offsetWidth}px`;
-      wrapper.style.minHeight = `${el.offsetHeight}px`;
-      wrapper.style.display = 'block';
-      wrapper.style.whiteSpace = 'pre-wrap';  // Preserve line breaks
-      wrapper.style.wordWrap = 'break-word';  // Handle long words
       wrapper.style.color = '#171729';
       wrapper.style.backgroundColor = 'transparent'; // No background
       wrapper.style.boxSizing = 'border-box';
       wrapper.style.fontFamily = 'Arial, sans-serif';
       wrapper.style.fontWeight = 'normal';
-      
+      wrapper.style.lineHeight = '1.5';
+      wrapper.style.whiteSpace = 'pre-wrap'; // Preserve line breaks
+      wrapper.style.wordWrap = 'break-word';
+
+      // For textarea, allow height to expand naturally
+      if (el.tagName === 'TEXTAREA') {
+        wrapper.style.minHeight = `${el.offsetHeight}px`;
+        wrapper.style.height = 'auto';
+        wrapper.style.display = 'block';
+      } else {
+        wrapper.style.height = `${el.offsetHeight}px`;
+        wrapper.style.display = 'flex';
+        wrapper.style.alignItems = 'center';
+      }
+
       // Insert replacement and hide original
       el.parentNode.insertBefore(wrapper, el);
       el.style.display = 'none';
@@ -307,10 +393,22 @@ const CircularAssessmentWheel = () => {
       levelEl.style.fontSize = '14px';
       levelEl.style.color = '#666';
       levelEl.style.fontFamily = 'Arial, sans-serif';
-      
+
       nameContainer.appendChild(studentNameEl);
       nameContainer.appendChild(projectNameEl);
       nameContainer.appendChild(levelEl);
+
+      // Add final grade if provided
+      if (finalGrade) {
+        const finalGradeEl = document.createElement('div');
+        finalGradeEl.textContent = `Final Grade: ${finalGrade}`;
+        finalGradeEl.style.fontSize = '18px';
+        finalGradeEl.style.fontWeight = 'bold';
+        finalGradeEl.style.color = '#171729';
+        finalGradeEl.style.marginTop = '10px';
+        finalGradeEl.style.fontFamily = 'Arial, sans-serif';
+        nameContainer.appendChild(finalGradeEl);
+      }
       
       // Clone the SVG wheel
       const originalSvg = document.querySelector('svg');
@@ -318,15 +416,6 @@ const CircularAssessmentWheel = () => {
       clonedSvg.style.width = '750px';
       clonedSvg.style.height = '750px';
       clonedSvg.style.maxWidth = '750px';
-
-      // Add simple text legend with color names
-      const legendField = document.createElement('div');
-      legendField.textContent = 'Green: Research  |  Yellow: Concepts  |  Orange: Fail & Fix  |  Blue: Communicate  |  Purple: Evaluate';
-      legendField.style.fontSize = '14px';
-      legendField.style.color = '#171729';
-      legendField.style.marginTop = '15px';
-      legendField.style.textAlign = 'center';
-      legendField.style.fontFamily = 'Arial, sans-serif';
       
       // Add date field at bottom
       const dateField = document.createElement('div');
@@ -339,19 +428,18 @@ const CircularAssessmentWheel = () => {
       
       tempContainer.appendChild(nameContainer);
       tempContainer.appendChild(clonedSvg);
-      tempContainer.appendChild(legendField);
       tempContainer.appendChild(dateField);
       document.body.appendChild(tempContainer);
       
       // Wait for fonts and styles to load
       await new Promise(resolve => setTimeout(resolve, 100));
       
-      // Capture the container
+      // Capture the container with high quality
       const canvas = await html2canvas(tempContainer, {
         width: 1000,
         height: 1000,
         backgroundColor: 'white',
-        scale: 2, // Higher quality
+        scale: 3, // Much higher quality for crisp text
         logging: false,
         useCORS: true,
         allowTaint: true,
@@ -385,40 +473,92 @@ const CircularAssessmentWheel = () => {
     try {
       // Replace inputs with styled divs for better rendering
       replaceInputsForExport();
-      
+
       // Hide buttons temporarily
       const buttons = document.querySelectorAll('button');
       const originalDisplays = Array.from(buttons).map(btn => btn.style.display);
       buttons.forEach(btn => btn.style.display = 'none');
-      
-      // Apply consistent font family for better rendering
+
+      // Hide elements marked with data-hide-in-export
+      const hideInExport = document.querySelectorAll('[data-hide-in-export]');
+      const originalHideDisplays = Array.from(hideInExport).map(el => el.style.display);
+      hideInExport.forEach(el => el.style.display = 'none');
+
+      // CRITICAL: Hide mobile layout and show desktop layout for PDF export
+      // Use data attributes for reliable selection across all screen sizes
+      const mobileLayouts = document.querySelectorAll('[data-mobile-layout]');
+      const originalMobileDisplays = Array.from(mobileLayouts).map(el => el.style.display);
+      mobileLayouts.forEach(el => el.style.display = 'none');
+
+      const desktopLayouts = document.querySelectorAll('[data-desktop-layout]');
+      const originalDesktopDisplays = Array.from(desktopLayouts).map(el => el.style.display);
+      desktopLayouts.forEach(el => el.style.display = 'flex');
+
+      // Force consistent A4 width for all devices (210mm = ~794px at 96dpi)
+      // Using a comfortable reading width that will fit well on A4
+      const originalBodyWidth = document.body.style.width;
+      const originalBodyMinWidth = document.body.style.minWidth;
+      const originalBodyMaxWidth = document.body.style.maxWidth;
+      const originalBodyPadding = document.body.style.padding;
+      const fixedWidth = '1200px'; // Optimal width for A4 PDF
+
+      document.body.style.width = fixedWidth;
+      document.body.style.minWidth = fixedWidth;
+      document.body.style.maxWidth = fixedWidth;
+      document.body.style.padding = '20px 40px'; // Compact padding for PDF
+
+      // Apply consistent font family and compact styling for better rendering
       const fontStyleEl = document.createElement('style');
       fontStyleEl.textContent = `
         * {
           font-family: 'Arial', sans-serif !important;
         }
+        body {
+          padding: 20px 40px !important;
+        }
+        .p-4, .p-6, .p-8 {
+          padding: 0.75rem !important;
+        }
+        .mb-6, .mb-8 {
+          margin-bottom: 1rem !important;
+        }
+        .mt-6, .mt-8 {
+          margin-top: 1rem !important;
+        }
+        .pb-10 {
+          padding-bottom: 1.5rem !important;
+        }
       `;
       document.head.appendChild(fontStyleEl);
-      
-      // Wait for DOM to update
-      await new Promise(resolve => setTimeout(resolve, 200));
-      
-      // Capture the entire document body
+
+      // Wait for DOM to update and reflow
+      await new Promise(resolve => setTimeout(resolve, 300));
+
+      // Capture the entire document body with higher quality and fixed width
       const canvas = await html2canvas(document.body, {
         height: document.body.scrollHeight,
-        width: document.body.scrollWidth,
+        width: 1200, // Match our fixed width
         backgroundColor: 'white',
-        scale: 1.5, // Good quality for PDF
+        scale: 2, // Balanced quality for crisp text with reasonable file size
         logging: false,
         useCORS: true,
         allowTaint: true,
         foreignObjectRendering: false, // Better compatibility
         onclone: (clonedDoc) => {
-          // Ensure consistent styling in cloned document
+          // Ensure consistent styling and larger text in cloned document
           const clonedStyle = clonedDoc.createElement('style');
           clonedStyle.textContent = `
             * {
               font-family: 'Arial', sans-serif !important;
+            }
+            body {
+              font-size: 16px !important;
+            }
+            .text-sm {
+              font-size: 14px !important;
+            }
+            .text-lg {
+              font-size: 20px !important;
             }
           `;
           clonedDoc.head.appendChild(clonedStyle);
@@ -427,51 +567,85 @@ const CircularAssessmentWheel = () => {
       
       // Clean up style element
       document.head.removeChild(fontStyleEl);
-      
+
+      // Restore body width and padding
+      document.body.style.width = originalBodyWidth;
+      document.body.style.minWidth = originalBodyMinWidth;
+      document.body.style.maxWidth = originalBodyMaxWidth;
+      document.body.style.padding = originalBodyPadding;
+
       // Restore buttons
       buttons.forEach((btn, index) => {
         btn.style.display = originalDisplays[index];
       });
-      
+
+      // Restore hidden elements
+      hideInExport.forEach((el, index) => {
+        el.style.display = originalHideDisplays[index];
+      });
+
+      // Restore mobile layouts
+      mobileLayouts.forEach((el, index) => {
+        el.style.display = originalMobileDisplays[index];
+      });
+
+      // Restore desktop layouts
+      desktopLayouts.forEach((el, index) => {
+        el.style.display = originalDesktopDisplays[index];
+      });
+
       // Restore original inputs
       restoreInputsAfterExport();
-      
-      const imgData = canvas.toDataURL('image/png', 1.0);
-      
-      // Create PDF
+
+      // Convert to JPEG with compression for smaller file size
+      const imgData = canvas.toDataURL('image/jpeg', 0.92); // 92% quality - good balance
+
+      // Create PDF - fit everything on ONE page
       const pdf = new jsPDF('p', 'mm', 'a4');
       const pdfWidth = pdf.internal.pageSize.getWidth();
       const pdfHeight = pdf.internal.pageSize.getHeight();
-      
-      const imgWidth = pdfWidth - 20; // 10mm margins
-      const imgHeight = (canvas.height * imgWidth) / canvas.width;
-      
-      let heightLeft = imgHeight;
-      let position = 10; // 10mm top margin
-      
-      // Add first page
-      pdf.addImage(imgData, 'PNG', 10, position, imgWidth, imgHeight);
-      heightLeft -= (pdfHeight - 20); // Account for margins
-      
-      // Add additional pages if needed
-      while (heightLeft >= 0) {
-        position = heightLeft - imgHeight + 10;
-        pdf.addPage();
-        pdf.addImage(imgData, 'PNG', 10, position, imgWidth, imgHeight);
-        heightLeft -= (pdfHeight - 20);
-      }
-      
+
+      // Calculate dimensions to fit content on single page with margins
+      const margin = 10; // 10mm margins on all sides
+      const availableWidth = pdfWidth - (margin * 2);
+      const availableHeight = pdfHeight - (margin * 2);
+
+      // Calculate scaling to fit both width and height
+      const widthRatio = availableWidth / (canvas.width / 2.834); // Convert px to mm (96dpi to 72dpi)
+      const heightRatio = availableHeight / (canvas.height / 2.834);
+      const scale = Math.min(widthRatio, heightRatio); // Use the smaller ratio to ensure it fits
+
+      // Calculate final dimensions
+      const imgWidth = (canvas.width / 2.834) * scale;
+      const imgHeight = (canvas.height / 2.834) * scale;
+
+      // Center the image on the page
+      const xPosition = (pdfWidth - imgWidth) / 2;
+      const yPosition = margin;
+
+      // Add image to PDF - single page only, using JPEG for compression
+      pdf.addImage(imgData, 'JPEG', xPosition, yPosition, imgWidth, imgHeight);
+
       pdf.save(generateFilename('pdf'));
       
     } catch (error) {
       console.error('Error generating PDF:', error);
       alert('Error generating PDF. Please try again.');
-      
+
       // Restore everything on error
+      document.body.style.width = '';
+      document.body.style.minWidth = '';
+      document.body.style.maxWidth = '';
+      document.body.style.padding = '';
+
       const buttons = document.querySelectorAll('button');
       buttons.forEach(btn => btn.style.display = '');
+
+      const hideInExport = document.querySelectorAll('[data-hide-in-export]');
+      hideInExport.forEach(el => el.style.display = '');
+
       restoreInputsAfterExport();
-      
+
       // Remove style element if it exists
       const fontStyleEl = document.querySelector('style[data-temp-export]');
       if (fontStyleEl) {
@@ -484,10 +658,20 @@ const CircularAssessmentWheel = () => {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-white p-4 md:p-8">
+      {/* Main Title */}
+      <div className="w-full text-center mb-8 pb-10">
+        <h1 className="text-3xl md:text-4xl font-bold text-gray-900">
+          Dreamcatcher
+        </h1>
+        <p className="text-lg text-gray-700 mt-2" style={{ color: '#374151', fontSize: '18px' }}>
+          by Daydream Believers
+        </p>
+      </div>
+
       {/* Header with form fields and clear button */}
       <div className="w-full max-w-4xl mb-6 md:mb-8">
         {/* Mobile layout - IMPROVED SPACING */}
-        <div className="block md:hidden space-y-4">
+        <div className="block md:hidden space-y-4" data-mobile-layout="true">
           <div className="space-y-4">
             <div>
               <label htmlFor="studentName-mobile" className="block text-sm font-medium text-gray-700 mb-2">
@@ -519,7 +703,7 @@ const CircularAssessmentWheel = () => {
             </div>
             <div>
               <label htmlFor="qualificationLevel-mobile" className="block text-sm font-medium text-gray-700 mb-2">
-                Qualification Level
+                Select Qualification Level
               </label>
               <select
                 id="qualificationLevel-mobile"
@@ -527,39 +711,47 @@ const CircularAssessmentWheel = () => {
                 onChange={(e) => setQualificationLevel(e.target.value)}
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm"
               >
-                <option value="Creative Thinking Qualification Level 5">Level 5</option>
-                <option value="Creative Thinking Qualification Level 6">Level 6</option>
+                <option value="Creative Thinking Qualification Level 5">Creative Thinking Qualification Level 5</option>
+                <option value="Creative Thinking Qualification Level 6">Creative Thinking Qualification Level 6</option>
+                <option value="Creative Innovation Qualification Level 5">Creative Innovation Qualification Level 5</option>
+                <option value="Creative Innovation Qualification Level 6">Creative Innovation Qualification Level 6</option>
               </select>
             </div>
-            <div>
-              <label htmlFor="feedback-mobile" className="block text-sm font-medium text-gray-700 mb-2">
-                Additional feedback <span className="text-gray-500 text-xs">({feedback.length}/500)</span>
-              </label>
-              <textarea
-                id="feedback-mobile"
-                value={feedback}
-                onChange={(e) => setFeedback(e.target.value)}
-                placeholder="Enter your formative assessment feedback here..."
-                maxLength="500"
-                rows="3"
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-vertical"
-              />
+
+            {/* Final Grade Section */}
+            <div className="border-t pt-4 mt-2">
+              <div>
+                <label htmlFor="finalGrade-mobile" className="block text-sm font-medium text-gray-700 mb-2">
+                  Final Grade
+                </label>
+                <input
+                  type="text"
+                  id="finalGrade-mobile"
+                  value={finalGrade}
+                  onChange={(e) => setFinalGrade(e.target.value)}
+                  placeholder="e.g., A, B+, 85%, Pass (optional)"
+                  maxLength="20"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                />
+              </div>
             </div>
           </div>
-          
-          {/* All buttons in horizontal line for mobile */}
-          <div className="flex space-x-3 mt-4">
+
+          <div className="flex justify-center">
             <button
               onClick={handleClearAll}
               className="px-4 py-2 text-sm bg-gray-200 hover:bg-gray-300 rounded transition-colors duration-200 text-gray-700"
             >
               Clear All
             </button>
-            
+          </div>
+
+          {/* Save buttons for mobile */}
+          <div className="border-t pt-4 flex flex-col space-y-3">
             <button
               onClick={saveWheelOnly}
               disabled={!isFullyAssessed() || isGeneratingWheel}
-              className={`px-4 py-2 text-sm rounded transition-colors duration-200 flex items-center space-x-2 ${
+              className={`w-full px-4 py-2 text-sm rounded transition-colors duration-200 flex items-center justify-center space-x-2 ${
                 isFullyAssessed() && !isGeneratingWheel
                   ? 'bg-blue-600 hover:bg-blue-700 text-white'
                   : 'bg-gray-300 text-gray-500 cursor-not-allowed'
@@ -568,7 +760,7 @@ const CircularAssessmentWheel = () => {
               {isGeneratingWheel ? (
                 <>
                   <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
-                  <span>Saving...</span>
+                  <span>Saving Wheel...</span>
                 </>
               ) : (
                 <span>Save Wheel</span>
@@ -578,7 +770,7 @@ const CircularAssessmentWheel = () => {
             <button
               onClick={saveFullPagePDF}
               disabled={!isFullyAssessed() || isGeneratingPDF}
-              className={`px-4 py-2 text-sm rounded transition-colors duration-200 flex items-center space-x-2 ${
+              className={`w-full px-4 py-2 text-sm rounded transition-colors duration-200 flex items-center justify-center space-x-2 ${
                 isFullyAssessed() && !isGeneratingPDF
                   ? 'bg-green-600 hover:bg-green-700 text-white'
                   : 'bg-gray-300 text-gray-500 cursor-not-allowed'
@@ -587,18 +779,18 @@ const CircularAssessmentWheel = () => {
               {isGeneratingPDF ? (
                 <>
                   <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
-                  <span>Saving...</span>
+                  <span>Saving PDF...</span>
                 </>
               ) : (
-                <span>Save PDF</span>
+                <span>Save Full PDF</span>
               )}
             </button>
           </div>
         </div>
 
         {/* Desktop layout - IMPROVED SPACING */}
-        <div className="hidden md:flex justify-between items-start">
-          {/* Left side - Form fields and buttons */}
+        <div className="hidden md:flex justify-between items-start" data-desktop-layout="true">
+          {/* Left side - Form fields only */}
           <div className="flex flex-col space-y-4">
             <div className="flex space-x-4">
               <div>
@@ -632,7 +824,7 @@ const CircularAssessmentWheel = () => {
             </div>
             <div>
               <label htmlFor="qualificationLevel" className="block text-sm font-medium text-gray-700 mb-2">
-                Qualification Level
+                Select Qualification Level
               </label>
               <select
                 id="qualificationLevel"
@@ -642,73 +834,79 @@ const CircularAssessmentWheel = () => {
               >
                 <option value="Creative Thinking Qualification Level 5">Creative Thinking Qualification Level 5</option>
                 <option value="Creative Thinking Qualification Level 6">Creative Thinking Qualification Level 6</option>
+                <option value="Creative Innovation Qualification Level 5">Creative Innovation Qualification Level 5</option>
+                <option value="Creative Innovation Qualification Level 6">Creative Innovation Qualification Level 6</option>
               </select>
-            </div>
-            
-            {/* All buttons in horizontal line */}
-            <div className="flex space-x-3 mt-4">
-              <button
-                onClick={handleClearAll}
-                className="px-4 py-2 text-sm bg-gray-200 hover:bg-gray-300 rounded transition-colors duration-200 text-gray-700"
-              >
-                Clear All
-              </button>
-              
-              <button
-                onClick={saveWheelOnly}
-                disabled={!isFullyAssessed() || isGeneratingWheel}
-                className={`px-4 py-2 text-sm rounded transition-colors duration-200 flex items-center space-x-2 ${
-                  isFullyAssessed() && !isGeneratingWheel
-                    ? 'bg-blue-600 hover:bg-blue-700 text-white'
-                    : 'bg-gray-300 text-gray-500 cursor-not-allowed'
-                }`}
-              >
-                {isGeneratingWheel ? (
-                  <>
-                    <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
-                    <span>Saving...</span>
-                  </>
-                ) : (
-                  <span>Save Wheel</span>
-                )}
-              </button>
-              
-              <button
-                onClick={saveFullPagePDF}
-                disabled={!isFullyAssessed() || isGeneratingPDF}
-                className={`px-4 py-2 text-sm rounded transition-colors duration-200 flex items-center space-x-2 ${
-                  isFullyAssessed() && !isGeneratingPDF
-                    ? 'bg-green-600 hover:bg-green-700 text-white'
-                    : 'bg-gray-300 text-gray-500 cursor-not-allowed'
-                }`}
-              >
-                {isGeneratingPDF ? (
-                  <>
-                    <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
-                    <span>Saving...</span>
-                  </>
-                ) : (
-                  <span>Save PDF</span>
-                )}
-              </button>
             </div>
           </div>
 
-          {/* Right side - Feedback field */}
-          <div className="flex-1 ml-8">
+          {/* Right side - Final Grade and buttons */}
+          <div className="flex flex-col space-y-4">
+            {/* Final Grade */}
             <div>
-              <label htmlFor="feedback-desktop" className="block text-sm font-medium text-gray-700 mb-2">
-                Additional feedback <span className="text-gray-500 text-xs">({feedback.length}/500)</span>
+              <label htmlFor="finalGrade" className="block text-sm font-medium text-gray-700 mb-2">
+                Final Grade
               </label>
-              <textarea
-                id="feedback-desktop"
-                value={feedback}
-                onChange={(e) => setFeedback(e.target.value)}
-                placeholder="Enter your formative assessment feedback here..."
-                maxLength="500"
-                rows="6"
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm resize-vertical"
+              <input
+                type="text"
+                id="finalGrade"
+                value={finalGrade}
+                onChange={(e) => setFinalGrade(e.target.value)}
+                placeholder="e.g., A, B+, 85%, Pass (optional)"
+                maxLength="20"
+                className="w-80 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               />
+            </div>
+
+            {/* Divider */}
+            <div className="border-t pt-4">
+              {/* Save buttons and Clear All */}
+              <div className="flex space-x-3">
+                <button
+                  onClick={saveWheelOnly}
+                  disabled={!isFullyAssessed() || isGeneratingWheel}
+                  className={`px-4 py-2 text-sm rounded transition-colors duration-200 flex items-center space-x-2 ${
+                    isFullyAssessed() && !isGeneratingWheel
+                      ? 'bg-blue-600 hover:bg-blue-700 text-white'
+                      : 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                  }`}
+                >
+                  {isGeneratingWheel ? (
+                    <>
+                      <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+                      <span>Saving...</span>
+                    </>
+                  ) : (
+                    <span>Save Wheel</span>
+                  )}
+                </button>
+
+                <button
+                  onClick={saveFullPagePDF}
+                  disabled={!isFullyAssessed() || isGeneratingPDF}
+                  className={`px-4 py-2 text-sm rounded transition-colors duration-200 flex items-center space-x-2 ${
+                    isFullyAssessed() && !isGeneratingPDF
+                      ? 'bg-green-600 hover:bg-green-700 text-white'
+                      : 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                  }`}
+                >
+                  {isGeneratingPDF ? (
+                    <>
+                      <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+                      <span>Saving...</span>
+                    </>
+                  ) : (
+                    <span>Save PDF</span>
+                  )}
+                </button>
+
+                <button
+                  onClick={handleClearAll}
+                  className="px-4 py-2 text-sm bg-gray-200 hover:bg-gray-300 rounded transition-colors duration-200 text-gray-700"
+                >
+                  Clear All
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -781,36 +979,126 @@ const CircularAssessmentWheel = () => {
         </svg>
       </div>
 
-      {/* Status display - UPDATED LAYOUT */}
+      {/* Status display - 2 COLUMN LAYOUT */}
       <div className="mt-6 md:mt-8 w-full max-w-6xl px-4">
-        <h3 className="text-lg font-semibold mb-4 text-gray-800 text-center">Assessment Status</h3>
-        <div className="space-y-4">
-          {competencies.map((competency) => {
-            const selectedGrade = selectedGrades[competency.key];
-            const gradeLabel = selectedGrade !== null ? grades[selectedGrade].label : 'Not assessed';
-            const rubricDescription = getRubricDescription(competency.key, selectedGrade);
-            
-            return (
-              <div key={competency.key} className="bg-white rounded-lg shadow-md p-4 md:p-6">
-                {/* Top row - Competency name, dot, and grade on same line */}
-                <div className="flex items-center space-x-3 mb-3">
-                  <div 
-                    className="w-6 h-6 rounded-full flex-shrink-0"
-                    style={{ backgroundColor: competency.color }}
-                  ></div>
-                  <div className="text-lg font-semibold text-gray-900">{competency.label}</div>
-                  <div className="text-2xl font-bold text-gray-900 ml-auto">{gradeLabel}</div>
-                </div>
-                
-                {/* Bottom row - Description takes full width */}
-                <div className="mt-3">
-                  <p className={`text-sm leading-relaxed ${selectedGrade !== null ? 'text-gray-700' : 'text-gray-500 italic'}`}>
-                    {rubricDescription}
-                  </p>
-                </div>
+        <h3 className="font-semibold mb-6 text-gray-800 text-center" style={{ fontSize: '24px' }}>Assessment Status</h3>
+
+        {/* Grid layout for desktop, stack for mobile */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {/* Row 1: Additional Feedback | Research */}
+          <div className="bg-white rounded-lg shadow-md p-4 md:p-6">
+            <div className="text-lg font-semibold text-gray-900 mb-3">Additional Feedback</div>
+            <div className="mt-3">
+              <textarea
+                value={additionalFeedback}
+                onChange={(e) => setAdditionalFeedback(e.target.value)}
+                placeholder="Enter additional comments or feedback (optional)"
+                maxLength="500"
+                rows="6"
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none text-sm"
+              />
+              <div className="text-xs text-gray-500 mt-1 text-right" data-hide-in-export="true">
+                {additionalFeedback.length}/500
               </div>
-            );
-          })}
+              {finalGrade && (
+                <div className="mt-4 pt-4 border-t border-gray-200">
+                  <div className="font-semibold text-gray-900">Final Grade: <span className="text-xl">{finalGrade}</span></div>
+                </div>
+              )}
+            </div>
+          </div>
+
+          <div className="bg-white rounded-lg shadow-md p-4 md:p-6">
+            <div className="flex items-center space-x-3 mb-3">
+              <div
+                className="w-6 h-6 rounded-full flex-shrink-0"
+                style={{ backgroundColor: competencies[0].color }}
+              ></div>
+              <div className="text-lg font-semibold text-gray-900">{competencies[0].label}</div>
+              <div className="text-2xl font-bold text-gray-900 ml-auto">
+                {selectedGrades[competencies[0].key] !== null ? grades[selectedGrades[competencies[0].key]].label : 'Not assessed'}
+              </div>
+            </div>
+            <div className="mt-3">
+              <p className={`text-sm leading-relaxed ${selectedGrades[competencies[0].key] !== null ? 'text-gray-700' : 'text-gray-500 italic'}`}>
+                {getRubricDescription(competencies[0].key, selectedGrades[competencies[0].key])}
+              </p>
+            </div>
+          </div>
+
+          {/* Row 2: Concepts | Fail & Fix */}
+          <div className="bg-white rounded-lg shadow-md p-4 md:p-6">
+            <div className="flex items-center space-x-3 mb-3">
+              <div
+                className="w-6 h-6 rounded-full flex-shrink-0"
+                style={{ backgroundColor: competencies[1].color }}
+              ></div>
+              <div className="text-lg font-semibold text-gray-900">{competencies[1].label}</div>
+              <div className="text-2xl font-bold text-gray-900 ml-auto">
+                {selectedGrades[competencies[1].key] !== null ? grades[selectedGrades[competencies[1].key]].label : 'Not assessed'}
+              </div>
+            </div>
+            <div className="mt-3">
+              <p className={`text-sm leading-relaxed ${selectedGrades[competencies[1].key] !== null ? 'text-gray-700' : 'text-gray-500 italic'}`}>
+                {getRubricDescription(competencies[1].key, selectedGrades[competencies[1].key])}
+              </p>
+            </div>
+          </div>
+
+          <div className="bg-white rounded-lg shadow-md p-4 md:p-6">
+            <div className="flex items-center space-x-3 mb-3">
+              <div
+                className="w-6 h-6 rounded-full flex-shrink-0"
+                style={{ backgroundColor: competencies[2].color }}
+              ></div>
+              <div className="text-lg font-semibold text-gray-900">{competencies[2].label}</div>
+              <div className="text-2xl font-bold text-gray-900 ml-auto">
+                {selectedGrades[competencies[2].key] !== null ? grades[selectedGrades[competencies[2].key]].label : 'Not assessed'}
+              </div>
+            </div>
+            <div className="mt-3">
+              <p className={`text-sm leading-relaxed ${selectedGrades[competencies[2].key] !== null ? 'text-gray-700' : 'text-gray-500 italic'}`}>
+                {getRubricDescription(competencies[2].key, selectedGrades[competencies[2].key])}
+              </p>
+            </div>
+          </div>
+
+          {/* Row 3: Communicate | Evaluate */}
+          <div className="bg-white rounded-lg shadow-md p-4 md:p-6">
+            <div className="flex items-center space-x-3 mb-3">
+              <div
+                className="w-6 h-6 rounded-full flex-shrink-0"
+                style={{ backgroundColor: competencies[3].color }}
+              ></div>
+              <div className="text-lg font-semibold text-gray-900">{competencies[3].label}</div>
+              <div className="text-2xl font-bold text-gray-900 ml-auto">
+                {selectedGrades[competencies[3].key] !== null ? grades[selectedGrades[competencies[3].key]].label : 'Not assessed'}
+              </div>
+            </div>
+            <div className="mt-3">
+              <p className={`text-sm leading-relaxed ${selectedGrades[competencies[3].key] !== null ? 'text-gray-700' : 'text-gray-500 italic'}`}>
+                {getRubricDescription(competencies[3].key, selectedGrades[competencies[3].key])}
+              </p>
+            </div>
+          </div>
+
+          <div className="bg-white rounded-lg shadow-md p-4 md:p-6">
+            <div className="flex items-center space-x-3 mb-3">
+              <div
+                className="w-6 h-6 rounded-full flex-shrink-0"
+                style={{ backgroundColor: competencies[4].color }}
+              ></div>
+              <div className="text-lg font-semibold text-gray-900">{competencies[4].label}</div>
+              <div className="text-2xl font-bold text-gray-900 ml-auto">
+                {selectedGrades[competencies[4].key] !== null ? grades[selectedGrades[competencies[4].key]].label : 'Not assessed'}
+              </div>
+            </div>
+            <div className="mt-3">
+              <p className={`text-sm leading-relaxed ${selectedGrades[competencies[4].key] !== null ? 'text-gray-700' : 'text-gray-500 italic'}`}>
+                {getRubricDescription(competencies[4].key, selectedGrades[competencies[4].key])}
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
