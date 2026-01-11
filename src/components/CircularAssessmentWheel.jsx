@@ -114,6 +114,80 @@ const CircularAssessmentWheel = () => {
         1: "Reflection is limited and mostly descriptive. Decisions are acknowledged but not evaluated. Shows minimal engagement with learning or growth.",
         0: "No meaningful reflection offered. Lacks insight into process, learning, or outcomes."
       }
+    },
+    "Creative Innovation Qualification Level 5": {
+      research: {
+        4: "Demonstrates curiosity and initiative using a wide range of reliable sources (secondary + some primary). Distinguishes facts from observations and converts them into actionable insights. Defines a clear opportunity supported by evidence and context.",
+        3: "Uses varied, relevant sources to explore the brief. Identifies useful patterns and links to potential opportunities. Growing understanding of how insight informs innovation.",
+        2: "Uses several sources, often guided. Collects relevant facts and observations, but interpretation is basic. Opportunity is emerging but lacks focus.",
+        1: "Relies mainly on given or limited sources. Minimal analysis or user/market understanding.",
+        0: "Little or no research evident; misunderstanding of the problem or no insight."
+      },
+      concepts: {
+        4: "Generates a wide range of original, insight-led ideas. Concepts demonstrate creativity, relevance, and value for a defined user or context. Feasibility (time, cost, resources) considered; potential impact articulated.",
+        3: "Develops several relevant ideas showing some originality and understanding of user value. Awareness of feasibility and emerging consideration of impact.",
+        2: "Generates a few predictable ideas with limited originality. Value implied but underdeveloped. Feasibility or impact not fully explored.",
+        1: "Produces safe or narrow ideas; weak connection between the idea and the opportunity.",
+        0: "No viable or relevant ideas generated."
+      },
+      failFix: {
+        4: "Tests ideas with users/peers; records and analyses feedback (Change → Why → Result). Iterations are purposeful and clearly improve value, fit, or feasibility. Demonstrates adaptability and resilience.",
+        3: "Tests ideas and considers feedback. Adjustments show partial improvement and awareness of constraints.",
+        2: "Makes limited or prompted changes. Feedback is used inconsistently or superficially. Improvements minor.",
+        1: "Makes surface-level changes with little evidence of reasoning or testing.",
+        0: "No evidence of iteration or adaptation."
+      },
+      communicate: {
+        4: "Communicates clearly and persuasively using professional formats (pitch, storyboard, proposal). Storytelling highlights problem, insight, value, and impact. Visuals/data used effectively.",
+        3: "Presents work clearly with some storytelling and a focus on value. Structure mostly clear; audience engagement emerging.",
+        2: "Communicates an idea in a basic way. Story partly clear but lacks focus on value or feasibility.",
+        1: "Presentation incomplete or confusing. Limited audience awareness or clarity.",
+        0: "No meaningful communication or presentation provided."
+      },
+      evaluate: {
+        4: "Reflects thoughtfully on the full journey. Explains how research, insights, and iterations shaped value, feasibility, and impact. Identifies clear next steps for development or implementation.",
+        3: "Reflects on key decisions, successes, and challenges. Recognises value and feasibility in outcomes; identifies at least one improvement.",
+        2: "Provides basic, mostly descriptive reflection. Mentions strengths and weaknesses, but limited analysis of outcomes or learning.",
+        1: "Reflection vague or minimal. Describes activity rather than evaluating results or growth.",
+        0: "No reflection or evaluation provided."
+      }
+    },
+    "Creative Innovation Qualification Level 6": {
+      research: {
+        4: "Independently leads research using diverse primary and secondary sources. Synthesises complex data into original insights that redefine the problem or reveal new opportunities. Research is investigative, strategic, and clearly informs direction.",
+        3: "Conducts purposeful research using relevant sources. Draws meaningful connections between findings and opportunity areas. Some synthesis and independent analysis evident.",
+        2: "Collects appropriate information with limited depth or interpretation. Research connects to the brief but lacks strong insight or strategic direction.",
+        1: "Uses narrow or descriptive research. Limited interpretation or connection between findings and innovation focus.",
+        0: "Minimal or irrelevant research. No meaningful insight or opportunity identified."
+      },
+      concepts: {
+        4: "Generates bold, original concepts transforming insights into high-value opportunities. Considers scalability, sustainability, and measurable impact. Demonstrates strategic thinking and creative leadership.",
+        3: "Develops several innovative ideas linked to insights and user value. Considers feasibility and longer-term potential; originality and purpose evident.",
+        2: "Produces workable ideas with some link to insight and value, though originality or impact is limited. Feasibility is partly explored but lacks strategic detail.",
+        1: "Generates predictable or incomplete ideas. Limited understanding of value or wider impact.",
+        0: "No viable or relevant ideas produced; work disconnected from research or user."
+      },
+      failFix: {
+        4: "Independently tests and validates concepts through multiple iterations with users, stakeholders, or real-world contexts. Records and interprets evidence critically to refine value, fit, and feasibility. Iteration is strategic, data-driven, and purposeful.",
+        3: "Tests ideas in different contexts. Feedback meaningfully informs development. Shows clear improvement in outcome quality and user fit.",
+        2: "Conducts limited testing or evaluation. Feedback acknowledged but not fully analysed or acted upon.",
+        1: "Minimal evidence of testing or adaptation. Adjustments superficial or unmeasured.",
+        0: "No testing, validation, or iteration is evident."
+      },
+      communicate: {
+        4: "Communicates with clarity, confidence, and persuasive impact. Uses storytelling, data, and visuals strategically to inspire belief in the innovation's value and potential. Tailors the message effectively to different audiences.",
+        3: "Presents ideas clearly and engagingly. Storyline highlights key insights and value. Developing the skill of adapting communication to the audience or purpose.",
+        2: "Communicates clearly but without strong persuasion or depth. The message partly connects to value or feasibility.",
+        1: "Presentation inconsistent or unclear. Little evidence of audience awareness or insight-driven messaging.",
+        0: "No meaningful communication is evident."
+      },
+      evaluate: {
+        4: "Evaluates the full innovation process critically and holistically. Explains how research, iteration, and decision-making shaped measurable value and impact. Identifies future potential or scalability; reflection shows ownership and strategic foresight.",
+        3: "Reflects thoughtfully on process and outcomes. Recognises how choices influenced value and feasibility. Identifies realistic improvements or next-stage actions.",
+        2: "Reflects on outcomes with some awareness of what worked or didn't. Limited critical analysis or connection to strategic learning.",
+        1: "Reflection minimal or descriptive. Little awareness of how learning influences future innovation.",
+        0: "No reflection or learning evident."
+      }
     }
   };
 
@@ -637,8 +711,10 @@ const CircularAssessmentWheel = () => {
                 onChange={(e) => setQualificationLevel(e.target.value)}
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm"
               >
-                <option value="Creative Thinking Qualification Level 5">Level 5</option>
-                <option value="Creative Thinking Qualification Level 6">Level 6</option>
+                <option value="Creative Thinking Qualification Level 5">Creative Thinking Qualification Level 5</option>
+                <option value="Creative Thinking Qualification Level 6">Creative Thinking Qualification Level 6</option>
+                <option value="Creative Innovation Qualification Level 5">Creative Innovation Qualification Level 5</option>
+                <option value="Creative Innovation Qualification Level 6">Creative Innovation Qualification Level 6</option>
               </select>
             </div>
 
@@ -758,6 +834,8 @@ const CircularAssessmentWheel = () => {
               >
                 <option value="Creative Thinking Qualification Level 5">Creative Thinking Qualification Level 5</option>
                 <option value="Creative Thinking Qualification Level 6">Creative Thinking Qualification Level 6</option>
+                <option value="Creative Innovation Qualification Level 5">Creative Innovation Qualification Level 5</option>
+                <option value="Creative Innovation Qualification Level 6">Creative Innovation Qualification Level 6</option>
               </select>
             </div>
           </div>
