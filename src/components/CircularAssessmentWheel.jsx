@@ -188,6 +188,43 @@ const CircularAssessmentWheel = () => {
         1: "Reflection minimal or descriptive. Little awareness of how learning influences future innovation.",
         0: "No reflection or learning evident."
       }
+    },
+    "BGE Challenges": {
+      research: {
+        4: "Shows great curiosity by asking thoughtful questions and exploring many different topics. Uses a variety of reliable sources to find information and applies it creatively to the task. Demonstrates a thorough understanding of the topic.",
+        3: "Demonstrates good curiosity and uses several reliable sources to explore new ideas. Information is well-organised and mostly relevant.",
+        2: "Shows some curiosity and uses a few sources to find information. Information is mostly relevant but not deeply explored.",
+        1: "Limited curiosity and uses only a few sources. Information is basic and not well-explored.",
+        0: "Shows little to no curiosity and does not explore the topic. Minimal to no information gathered."
+      },
+      concepts: {
+        4: "Creates many unique ideas and explores new possibilities. Shows courage in creativity by trying new approaches. Has a good understanding of creative thinking and knows how to use research to inspire and develop ideas.",
+        3: "Creates several creative ideas and tries new approaches. Willing to experiment with different options.",
+        2: "Comes up with a few ideas and tries some new things. Limited exploration and risk-taking.",
+        1: "Basic ideas with minimal creativity. Little experimentation or trying new approaches.",
+        0: "No new ideas or attempts to try something different. Ideas are very basic or missing."
+      },
+      failFix: {
+        4: "Actively tries different solutions and learns from mistakes. Open to feedback and makes significant improvements.",
+        3: "Shows good problem-solving skills by trying different solutions and learning from feedback.",
+        2: "Tries to solve problems with some changes but may not go beyond simple fixes.",
+        1: "Limited effort in solving problems or making changes. Rarely seeks feedback.",
+        0: "Does not try to fix problems or respond to feedback. No evidence of trying to improve."
+      },
+      communicate: {
+        4: "Tells a great story or shares ideas in a way that is interesting and engaging. Uses different ways (like pictures, words, or videos) to make the story exciting and memorable. Demonstrates a strong sense of empathy by understanding both the audience and the subject matter.",
+        3: "Tells a good story with clear ideas and some use of different media. Engages the audience well.",
+        2: "Tells a basic story or shares ideas clearly but in a more straightforward way. Limited use of different media.",
+        1: "Struggles to tell a story or share ideas clearly. Minimal use of media, and the story is not very engaging.",
+        0: "Does not effectively tell a story or share ideas. Lacks clarity and engagement."
+      },
+      evaluate: {
+        4: "Thinks carefully about their work and identifies what went well and what could be improved. Understands well how they learn and knows the steps they can take to improve and get better over time.",
+        3: "Reflects on their work and identifies some strengths and areas for improvement.",
+        2: "Shows some reflection on their work with a basic understanding of strengths and weaknesses.",
+        1: "Limited reflection with minimal understanding of the work and areas for improvement.",
+        0: "Does not reflect on their work or identify areas for improvement. Lacks understanding of the learning process."
+      }
     }
   };
 
@@ -715,6 +752,7 @@ const CircularAssessmentWheel = () => {
                 <option value="Creative Thinking Qualification Level 6">Creative Thinking Qualification Level 6</option>
                 <option value="Creative Innovation Qualification Level 5">Creative Innovation Qualification Level 5</option>
                 <option value="Creative Innovation Qualification Level 6">Creative Innovation Qualification Level 6</option>
+                <option value="BGE Challenges">BGE Challenges</option>
               </select>
             </div>
 
@@ -836,6 +874,7 @@ const CircularAssessmentWheel = () => {
                 <option value="Creative Thinking Qualification Level 6">Creative Thinking Qualification Level 6</option>
                 <option value="Creative Innovation Qualification Level 5">Creative Innovation Qualification Level 5</option>
                 <option value="Creative Innovation Qualification Level 6">Creative Innovation Qualification Level 6</option>
+                <option value="BGE Challenges">BGE Challenges</option>
               </select>
             </div>
           </div>
